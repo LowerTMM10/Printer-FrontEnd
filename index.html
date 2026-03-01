@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{TITLE}}</title>
+    <title>HP DeskJet - Bestand Uploaden</title>
     <style>
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
@@ -11,48 +11,116 @@
             padding-top: 50px; 
             background: #f4f4f4; 
             margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
         .card { 
             background: white; 
-            padding: 30px; 
-            display: inline-block; 
+            padding: 40px; 
             border-radius: 15px; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
-            max-width: 400px;
+            max-width: 450px;
             width: 90%;
         }
-        /* Logica om de juiste GIF te tonen op basis van de {{CLASS}} variabele */
-        .success-box .icon-success { display: inline-block; }
-        .error-box .icon-error { display: inline-block; }
-
-        h1 { margin: 10px 0; font-size: 1.5rem; }
-        .error { color: #e74c3c; }
-        .success { color: #2ecc71; }
-        p { color: #555; line-height: 1.6; margin-bottom: 20px; }
-        hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
-        
-        .btn { 
-            text-decoration: none; 
-            color: #3498db; 
-            font-weight: bold; 
-            display: inline-block;
-            padding: 10px 25px;
-            border: 2px solid #3498db;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+        h1 { 
+            margin-top: 0;
+            color: #333;
+            font-size: 1.6rem;
+            margin-bottom: 25px;
         }
-        .btn:hover {
-            background: #3498db;
+        .printer-icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        /* Styling voor het upload veld */
+        .upload-container {
+            border: 2px dashed #bdc3c7;
+            border-radius: 10px;
+            padding: 30px 20px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            background: #fafafa;
+            cursor: pointer;
+            position: relative;
+        }
+        .upload-container:hover {
+            border-color: #3498db;
+            background: #f0f7fd;
+        }
+        input[type="file"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .upload-text {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+        }
+        .file-selected-name {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #3498db;
+        }
+        /* De Submit knop */
+        input[type="submit"] {
+            background-color: #3498db;
             color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background-color: #2980b9;
             transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+        input[type="submit"]:active {
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <h1>Bestand uploaden naar HP DeskJet</h1>
-    <form method="post" enctype="multipart/form-data">
-        <input type="file" name="file">
-        <input type="submit" value="Printen!">
-    </form>
+    <div class="card">
+        <span class="printer-icon">🖨️</span>
+        <h1>Bestand naar HP DeskJet</h1>
+        
+        <form method="post" enctype="multipart/form-data">
+            <div class="upload-container" id="drop-zone">
+                <div class="upload-text">
+                    <p>Klik hier of sleep een bestand om te uploaden</p>
+                    <span id="file-name" class="file-selected-name">Geen bestand gekozen</span>
+                </div>
+                <input type="file" name="file" id="file-input" onchange="updateFileName()">
+            </div>
+            
+            <input type="submit" value="Start met Printen!">
+        </form>
+    </div>
+
+    <script>
+        // Een klein scriptje om de naam van het gekozen bestand te laten zien
+        function updateFileName() {
+            const input = document.getElementById('file-input');
+            const label = document.getElementById('file-name');
+            if (input.files.length > 0) {
+                label.textContent = "Gekozen: " + input.files[0].name;
+            } else {
+                label.textContent = "Geen bestand gekozen";
+            }
+        }
+    </script>
 </body>
 </html>
