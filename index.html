@@ -2,7 +2,51 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>Tobias Printer Server</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}}</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            text-align: center; 
+            padding-top: 50px; 
+            background: #f4f4f4; 
+            margin: 0;
+        }
+        .card { 
+            background: white; 
+            padding: 30px; 
+            display: inline-block; 
+            border-radius: 15px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+            max-width: 400px;
+            width: 90%;
+        }
+        /* Logica om de juiste GIF te tonen op basis van de {{CLASS}} variabele */
+        .success-box .icon-success { display: inline-block; }
+        .error-box .icon-error { display: inline-block; }
+
+        h1 { margin: 10px 0; font-size: 1.5rem; }
+        .error { color: #e74c3c; }
+        .success { color: #2ecc71; }
+        p { color: #555; line-height: 1.6; margin-bottom: 20px; }
+        hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
+        
+        .btn { 
+            text-decoration: none; 
+            color: #3498db; 
+            font-weight: bold; 
+            display: inline-block;
+            padding: 10px 25px;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body>
     <h1>Bestand uploaden naar HP DeskJet</h1>
